@@ -32,5 +32,6 @@
 **/*.tdo
 **/*.ods#
 **/*.loab
-**/.DS_Store
+**/.DS_Store.
+._*
 
