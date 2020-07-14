@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Game jams Survey</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/bootstrap-select.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- jQuery -->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/highcharts.js"></script>
+	<script src="js/exporting.js"></script>
+	<script src="js/papaparse.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<script src="js/drilldown.js"></script>
+	<script src="js/bootstrap-select.js"></script>
+
+</head>
+
+<body>
+	
+	<!-- Navigation -->
+	
+	 <!-- Navigation -->
+     <nav class="navbar navbar-inverse navbar-fixed-top" id="navTop" role="navigation">
+         <div class="container-fluid" id="textNav">
+            <p id="textNavBarTop" style="text-align: left; font-size: 20px; margin-top: 11px;"><i><a href="#">GGJ 2020 Survey</a></i> &emsp; <span style="font-size: 16px;"><a href="#about">About</a></span> <span style="float: right;  margin-top: -5px; font-size: 28px;"> <a href="#Menu" id="menu"><i class="fa fa-bars" aria-hidden="true"></i></a></span></p>       
+         </div>
+         <!-- /.container -->
+     </nav>
+	
+    <!--
+        <div class="col-12" id="navbartop">
+	     <p id="textNavBarTop" style="text-align: left; font-size: 20px; margin-left: 60px;margin-right: 80px; margin-top: 11px;"><i><a href="#">Mobile Survey</a></i> &emsp; <span style="font-size: 16px;"><a href="#about">About</a></span> <span style="float: right;  margin-top: -5px; font-size: 28px;"> <a href="#Menu" id="menu"><i class="fa fa-bars" aria-hidden="true"></i></a></span></p>
+        
+        </div> -->
+        <!-- /.container -->
+   
+
+    <div id="wrapper" style="z-index: 1;">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+	       
+            		<h3 style="margin-left: 20px; margin-bottom: 20px;"><i>Filter by:</i></h3>
+	                
+	                <div class="form-group">
+		                <label for="inlineFormCustomSelect" style="margin-left: 20px; font-size: 16px;margin-right: 30px">Question 7:</label>
+		                
+			                <select class="custom-select" id="type" onChange="setSelect('type', this.value)" style="width: 100px; position: relative">
+							  <option value="All" selected>All</option>
+							  <option value="None">No, I haven't (None)</option>
+							  <option value="Yes,  professionally">Yes,  professionally</option>
+							  <option value="Yes,  as an indie developer">Yes,  as an indie developer</option>
+							  <option value="Yes, as a hobbyist">Yes, as a hobbyist</option>
+							  <option value="Yes, as a student">Yes, as a student</option>
+							</select>
+		                
+	                </div>
+	                
+	                 <h3 style="margin-left: 20px; margin-bottom: 20px;"><i>Download:</i></h3>
+	                
+	                <form>
+					<a href="GGJ_2020_Survey.csv" style="margin-left: 20px; font-size: 16px;margin-right: 30px" download="GGJ_2020_Survey.csv">Answer sheet (.csv)</a>
+
+					</form>
+	                
+	                
+				 <!--	
+					<div class="form-group">
+						<label for="inlineFormCustomSelect" style="margin-left: 20px; font-size: 16px;margin-right: 42px;">Platform:</label>
+						
+							<select class="custom-select" id="platform" onChange="setSelect('platform', this.value)" style="width: 100px;">
+							  <option value="---" selected>---</option>
+							  <option value="Android">Android</option>
+							  <option value="iOS">iOS</option>
+							</select>
+						
+					</div>
+					
+					<div class="form-group">
+						<label for="inlineFormCustomSelect" style="margin-left: 20px; font-size: 16px;">Professionally:</label>
+						
+							<select class="custom-select" id="professionally" onChange="setSelect('professionally', this.value)" style="width: 100px;">
+							  <option value="---" selected>---</option>
+							  <option value="professionally">professionally</option>
+							  <option value="non-professionally">non-professionally</option>
+							  <option value="open source projects">open source projects</option>
+							</select>
+					
+						
+					</div>
+					
+					
+			<h3 id="dataset" style="margin-left: 20px; margin-bottom: 20px; margin-top: 40px; visibility: hidden;"><i>Dataset from:</i></h3>
+            <form id="formDataset" class="form-inline" style="margin-left: 20px; visibility: hidden;">
+			   <div class="form-group">
+			    
+			     <label class="radio-inline">
+			     <input id="inlineradio1" name="sampleinlineradio" value="github" type="radio" onchange="setSelect('Radio', this.value)" checked>
+			     1° Github</label>
+			    <label class="radio-inline">
+			     <input id="inlineradio2" name="sampleinlineradio" value="list" type="radio" onchange="setSelect('Radio', this.value)">
+			     Professionals-list</label>
+			    <br />
+			    <label class="radio-inline">
+			     <input id="inlineradio3" name="sampleinlineradio" value="github2" type="radio" onchange="setSelect('Radio', this.value)">
+			     2° GitHub</label>
+			    </div>
+			   
+			 </form>
+			 -->
+					
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+					<h2>Tell us how was the game jam!</h2>
+        		</div>
+        		<div class="row">
+		            <div id="container" >
+			            <div id="temp">
+							<h4 style="text-align: center"> Loading... <i class="fa fa-refresh fa-spin fa-fw"></i><h4>
+							<script>
+								start();
+							</script>
+						</div>
+					</div>
+				</div>
+                
+                <div class="row">
+					
+					<div class="container" id="about">
+					    <hr>
+					    <div class="row">
+				            <div class="col-sm-6">
+				                <h2>What We Do</h2>
+				                <p>We are researchers from [blind review].  We want to find out how participants seek and get help during the Global Game Jam 2020, most importantly, how people with different demographic data collaborate. To do so, we conducted a survey with participants of the Global Game Jam (GGJ) 2020. Initially, we collected information from participants around the world through the email information made available on the events’ website on which people willing to participate in the jam had to sign up before the event. We then distributed an online survey to these participants. We received in total 3197 answers that agreed to participate (as a volunteer) in our research.</p>
+				                 
+				                <p>This is a purely academic research project with no commercial interests. We will openly publish the results so everyone can benefit from them, but will anonymize everything before doing so. We will handle the responses confidentially. </p>
+				                
+				            </div>
+				            <div class="col-sm-6">
+				                <h2>Contacts</h2>
+				                <address>
+				                	<p>blind review</p>
+				                	<p>blind review</p>
+				                	<p>blind review</p>
+				                	<p>blind review</p>
+									
+									
+									
+				                </address>
+				            </div>
+				        </div>
+				        <!-- /.row -->
+				
+				    </div>
+	
+                </div>    
+            </div>
+            <div class="row">
+	            <footer class="footer-distributed">
+			        <hr>
+					<div class="row">
+						
+						<h4 style="text-align: right;  margin-right:48px;">Share in:</span> </h4>							
+						
+						<p style="text-align: right"><a href="javascript:share('facebook');"><i class="fa fa-facebook-square" aria-hidden="true" style="font-size:32px;"></i></a> 
+						<a href="javascript:share('twitter');"><i class="fa fa-twitter-square" aria-hidden="true" style="font-size:32px;"></i></a> 
+						<a href="javascript:share('linked');"><i class="fa fa-linkedin-square" aria-hidden="true" style="font-size:32px;"></i></a>
+						<a href="javascript:share('google+');"><i class="fa fa-google-plus-square" aria-hidden="true" style="font-size:32px;"></i></a></p>								
+					</div>
+		
+				</footer>
+			</div>
+		
+    </div>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+    <!-- /#wrapper -->
+	
+	
+	
+	
+	<!-- teste footer
+	<div id="footer" style="background:#f88; position: relative; bottom:0; width:100%; height:60px;">
+		<h2>Why develop for Android? Why for iOS? Why for any of the other mobile platforms?</h2>
+		
+	</div>
+	-->
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>
