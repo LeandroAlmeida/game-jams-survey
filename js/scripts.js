@@ -932,10 +932,11 @@ function All(){
 	Series=loadData("1.", "Pie");
 	Semi_Pie("#1", "1 - Gender?", Series);
 	
-	
-	createBoxesCharts("2");
-	alterHeight("2","500px");
-	ColumnWithRotatedLabels("#2",  "2 - Where did you attend GGJ 2020?");//não tem loadData pq os valores foram fixos e não processados da planilha
+	if (Type=="All"){
+		createBoxesCharts("2");
+		alterHeight("2","500px");
+		ColumnWithRotatedLabels("#2",  "2 - Where did you attend GGJ 2020?");//não tem loadData pq os valores foram fixos e não processados da planilha
+	}
 	//createTable("3",  "3 - Age?");//o . do 2 adicionei depois
 	
 	createBoxesCharts("3");
